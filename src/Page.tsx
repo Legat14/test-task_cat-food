@@ -1,4 +1,6 @@
 import React from 'react';
+import CardBackground from './components/CardBackground';
+import CardBorder from './components/CardBorder';
 
 function Page(): JSX.Element {
   return (
@@ -10,6 +12,9 @@ function Page(): JSX.Element {
 
           <div className='page__card'>
             <div className='card__blank'>
+              <CardBackground />
+              <CardBorder />
+              <div className="card__img"></div>
               <div className='card__description'>
                 <p className="card__slogan">Сказочное заморское яство</p>
                 <h2>Нямушка</h2>
@@ -29,6 +34,9 @@ function Page(): JSX.Element {
 
           <div className='page__card'>
             <div className='card__blank'>
+              <CardBackground />
+              <CardBorder />
+              <div className="card__img"></div>
               <div className='card__description'>
                 <p className="card__slogan">Сказочное заморское яство</p>
                 <h2>Нямушка</h2>
@@ -48,6 +56,9 @@ function Page(): JSX.Element {
 
           <div className='page__card'>
             <div className='card__blank'>
+              <CardBackground />
+              <CardBorder />
+              <div className="card__img"></div>
               <div className='card__description'>
                 <p className="card__slogan">Сказочное заморское яство</p>
                 <h2>Нямушка</h2>
