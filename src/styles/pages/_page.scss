@@ -50,6 +50,7 @@
   height: 480px;
   padding: 21px 16px 16px 51px;
   @include flex($direction: column, $justify: space-between);
+  cursor: pointer;
 
   .card__background,
   .card__border,
@@ -89,6 +90,7 @@
   }
 
   h2 {
+    margin-top: 5px;
     font-size: 48px;
     font-weight: 700;
     line-height: 56px;
@@ -143,6 +145,10 @@
   .weight__unit {
     font-size: 21px;
   }
+}
+
+.card__blank:hover .card__weight {
+  background-color: $hovered-border-color;
 }
   
 .card__buy {
