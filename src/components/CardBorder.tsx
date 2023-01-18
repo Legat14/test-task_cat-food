@@ -1,6 +1,7 @@
 import React from 'react';
+import { Colors } from '../types';
 
-export default function CardBorder(props: {color: string}) {
+export default function CardBorder(props: {color: Colors}) {
   return (
     <svg 
       className='card__border'

@@ -129,7 +129,6 @@
   height: 80px;
   @include flex($direction: column);
   align-self: flex-end;
-  background-color: $main-border-color;
   border-radius: 50%;
 
   p {
@@ -146,10 +145,6 @@
     font-size: 21px;
   }
 }
-
-.card__blank:hover .card__weight {
-  background-color: $hovered-border-color;
-}
   
 .card__buy {
   font-size: 13px;
@@ -159,7 +154,6 @@
   color: $primary-font-color;
 
   .card__link {
-    color: $main-border-color;
     text-decoration: none;
     border-bottom: 1px dashed;
     cursor: pointer;
