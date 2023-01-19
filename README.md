@@ -4,4 +4,4 @@
 
 #### To test site enter npm run start
 
-Deploy: https://legat14.github.io/test-task_cat-food_deploy/
+Deploy: D:\Coding\Test_tasks\fun_box\test-task\test-task_cat-food
