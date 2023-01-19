@@ -4,3 +4,11 @@ export enum Colors {
   SELECTED = '#d91667',
   SELECTEDHOVER = '#e52e7a',
 }
+
+export interface CardData {
+    taste: string;
+    includes: React.FC[],
+    weight: number,
+    bought: string,
+    runOut: string,
+};

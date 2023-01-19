@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import { Colors } from '../types';
+import { sloganData } from '../data';
+import { CardData, Colors } from '../types';
+import Buy from './Buy';
 import CardBackground from './CardBackground';
 import CardBorder from './CardBorder';
 
-export default function Card() {
+export default function Card(props: CardData) {
   const [color, setColor] = useState<Colors>(Colors.DEFAULT);
+  const [slogan, setSlogan] = useState<string>(sloganData.default);
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
   useEffect(() => {
@@ -14,6 +17,7 @@ export default function Card() {
   function handleMoseEnter() {
     if (isSelected) {
       setColor(Colors.SELECTEDHOVER);
+      setSlogan(sloganData.cancel);
     } else {
       setColor(Colors.DEFAULTHOVER);
     }
@@ -22,6 +26,7 @@ export default function Card() {
   function handleMoseLeave() {
     if (isSelected) {
       setColor(Colors.SELECTED);
+      setSlogan(sloganData.default);
     } else {
       setColor(Colors.DEFAULT);
     }
@@ -29,7 +34,7 @@ export default function Card() {
 
   function handleClick() {
     setIsSelected(!isSelected);
-    handleMoseLeave();
+    setSlogan(sloganData.default);
   }
 
   return (
@@ -44,29 +49,24 @@ export default function Card() {
         <CardBorder {...{color}} />
         <div className="card__img"></div>
         <div className='card__description'>
-          <p className="card__slogan">Сказочное заморское яство</p>
+          <p className="card__slogan">{slogan}</p>
           <h2>Нямушка</h2>
-          <h3>с фуа-гра</h3>
+          <h3>{props.taste}</h3>
           <ul>
-            <li><strong>10</strong> порций</li>
-            <li>мышь в подарок</li>
+            {props.includes.map((include) => <li>{include({})}</li>)}
           </ul>
         </div>
         <div className="card__weight" style={{backgroundColor: color}}>
-          <p className="weight__number">0,5</p>
+          <p className="weight__number">{props.weight}</p>
           <p className="weight__unit">кг</p>
         </div>
       </div>
-      <p className='card__buy'>Чего сидишь? Порадуй котэ, <span
-          className='card__link'
-          style={{color: color}}
-          onMouseEnter={handleMoseEnter}
-          onMouseLeave={handleMoseLeave}
-          onClick={handleClick}
-        >
-          купи.
-        </span>
-      </p>
+      {isSelected ? <p className='card__buy'>{props.bought}</p> : <Buy
+        color={color}
+        handleMoseEnter={handleMoseEnter}
+        handleMoseLeave={handleMoseLeave}
+        handleClick={handleClick}
+      />}
     </div>
   )
 }

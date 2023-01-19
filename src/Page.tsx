@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
-import CardBackground from './components/CardBackground';
-import CardBorder from './components/CardBorder';
+import { cardData } from './data';
 
 function Page(): JSX.Element {
   return (
@@ -11,9 +10,7 @@ function Page(): JSX.Element {
 
         <div className='page__cards-container'>
 
-          <Card />
-          <Card />
-          <Card />
+          {cardData.map((data) => <Card {...data} />)}
 
         </div>
       </section>
