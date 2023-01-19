@@ -67,6 +67,7 @@ export default function Card(props: CardData) {
         handleMoseLeave={handleMoseLeave}
         handleClick={handleClick}
       />}
+      <button className='card__run-out-btn'>Run out :-(</button>
     </div>
   )
 }

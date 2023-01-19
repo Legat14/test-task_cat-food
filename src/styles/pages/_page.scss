@@ -30,6 +30,7 @@
 }
 
 .page__card {
+  position: relative;
   width: 320px;
   height: 509px;
   @include flex($direction: column, $justify: space-between);
@@ -158,4 +159,29 @@
     border-bottom: 1px dashed;
     cursor: pointer;
   }
+}
+
+.card__run-out-btn {
+  position: absolute;
+  bottom: -50px;
+  width: 100%;
+  padding: 5px;
+  font-family: 'Trebucet_MC', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: $primary-font-color;
+  background-color: transparent;
+  border: $btn-border;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.card__run-out-btn:hover {
+  color: $secodary-font-color;
+  background-color: $primary-font-color;
+}
+
+.card__run-out-btn:active {
+  transform: scale(95%);
+  border: $btn-border-active;
 }
