@@ -4,4 +4,4 @@
 
 #### To test site enter npm run start
 
-Deploy: D:\Coding\Test_tasks\fun_box\test-task\test-task_cat-food
+Deploy: https://legat14-cat-food-test-task.netlify.app/
