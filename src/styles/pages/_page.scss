@@ -185,3 +185,22 @@
   transform: scale(95%);
   border: $btn-border-active;
 }
+
+.page__card_run-out {
+
+  h2,
+  h3,
+  li,
+  .card__slogan {
+    color: $deactive-color;
+    opacity: 50%;
+  }
+
+  .card__buy {
+    color: $deactive-buy-color;
+  }
+
+  .card__img {
+    opacity: 50%;
+  }
+}

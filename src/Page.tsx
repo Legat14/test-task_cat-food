@@ -10,7 +10,7 @@ function Page(): JSX.Element {
 
         <div className='page__cards-container'>
 
-          {cardData.map((data) => <Card {...data} />)}
+          {cardData.map((data, index) => <Card key={index} {...data} />)}
 
         </div>
       </section>

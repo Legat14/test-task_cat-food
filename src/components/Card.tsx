@@ -9,36 +9,58 @@ export default function Card(props: CardData) {
   const [color, setColor] = useState<Colors>(Colors.DEFAULT);
   const [slogan, setSlogan] = useState<string>(sloganData.default);
   const [isSelected, setIsSelected] = useState<boolean>(false);
+  const [isRunOut, setIsRunOut] = useState<boolean>(false);
 
   useEffect(() => {
     handleMoseLeave();
-  }, [isSelected]);
+  }, [isSelected, isRunOut]);
 
   function handleMoseEnter() {
-    if (isSelected) {
-      setColor(Colors.SELECTEDHOVER);
-      setSlogan(sloganData.cancel);
+    if (!isRunOut) {
+      if (isSelected) {
+        setColor(Colors.SELECTEDHOVER);
+        setSlogan(sloganData.cancel);
+      } else {
+        setColor(Colors.DEFAULTHOVER);
+      }
     } else {
-      setColor(Colors.DEFAULTHOVER);
+      setColor(Colors.DISABLED);
     }
   }
 
   function handleMoseLeave() {
-    if (isSelected) {
-      setColor(Colors.SELECTED);
+    if (!isRunOut) {
+      if (isSelected) {
+        setColor(Colors.SELECTED);
+        setSlogan(sloganData.default);
+      } else {
+        setColor(Colors.DEFAULT);
+      }
+    } else {
+      setColor(Colors.DISABLED);
+    }
+  }
+
+  function handleClick() {
+    if (!isRunOut) {
+      setIsSelected(!isSelected);
       setSlogan(sloganData.default);
+    } else {
+      setColor(Colors.DISABLED);
+    }
+  }
+
+  function handleRunOutClick() {
+    setIsRunOut(!isRunOut);
+    if (isRunOut) {
+      setColor(Colors.DISABLED);
     } else {
       setColor(Colors.DEFAULT);
     }
   }
 
-  function handleClick() {
-    setIsSelected(!isSelected);
-    setSlogan(sloganData.default);
-  }
-
   return (
-    <div className='page__card'>
+    <div className={isRunOut ? 'page__card page__card_run-out' : 'page__card'}>
       <div
         className='card__blank'
         onMouseEnter={handleMoseEnter}
@@ -53,21 +75,25 @@ export default function Card(props: CardData) {
           <h2>Нямушка</h2>
           <h3>{props.taste}</h3>
           <ul>
-            {props.includes.map((include) => <li>{include({})}</li>)}
+            {props.includes.map((include, index) => <li key={index}>{include({})}</li>)}
           </ul>
         </div>
         <div className="card__weight" style={{backgroundColor: color}}>
-          <p className="weight__number">{props.weight}</p>
+          <p className="weight__number">{props.weight.toString().replace('.', ',')}</p>
           <p className="weight__unit">кг</p>
         </div>
       </div>
-      {isSelected ? <p className='card__buy'>{props.bought}</p> : <Buy
-        color={color}
-        handleMoseEnter={handleMoseEnter}
-        handleMoseLeave={handleMoseLeave}
-        handleClick={handleClick}
-      />}
-      <button className='card__run-out-btn'>Run out :-(</button>
+      {isRunOut ? <p className='card__buy'>{props.runOut}</p> :
+        (
+          isSelected ? <p className='card__buy'>{props.bought}</p> : <Buy
+            color={color}
+            handleMoseEnter={handleMoseEnter}
+            handleMoseLeave={handleMoseLeave}
+            handleClick={handleClick}
+          />
+        )
+      }
+      <button className='card__run-out-btn' onClick={handleRunOutClick}>Закончилось :-(</button>
     </div>
   )
 }
